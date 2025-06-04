@@ -36,7 +36,7 @@
         }
         const toggleButton = event.target.closest('.toggle-button')
         if (toggleButton) {
-            if ('search-bar' === toggleButton.getAttribute('data-target')) {
+            if ('search-container' === toggleButton.getAttribute('data-target')) {
                 updateSearchIndicators(toggleButton)
             }
 
@@ -56,7 +56,7 @@
 
         if (clickedOutsideAllTargets) {
             targetElements.forEach((element) => {
-                if ('search-bar' === element.id) {
+                if ('search-container' === element.id) {
                     updateSearchIndicators()
                 }
                 element.classList.remove('open')

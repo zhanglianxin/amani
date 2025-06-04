@@ -33,7 +33,7 @@
         </figure>
       {{ end }}
       <!-- article content -->
-      <div class="mb-14">
+      <div class="mb-14" data-pagefind-ignore="all">
         {{ .Content }}
         {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
       </div>

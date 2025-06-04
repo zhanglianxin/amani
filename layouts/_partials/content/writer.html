@@ -1,6 +1,6 @@
 {{ $authorId := .Params.author | default .Site.Params.defaultAuthor }}
 {{ with $author := index .Site.Params.Authors $authorId }}
-  <div class="flex items-center gap-x-4 dark:text-white sm:text-sm">
+  <div class="flex items-center gap-x-4 dark:text-white sm:text-sm" data-pagefind-ignore="all">
     {{/*{{- with $avatar := resources.Get $author.Avatar }}
       <img class="w-12 h-12 bg-black dark:bg-white rounded-full md:hidden" src="{{ $avatar.Permalink }}"
            alt="{{ $author.name }} avatar"
