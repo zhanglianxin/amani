@@ -1,0 +1,38 @@
+{{ $socialIconsMap := dict
+  "email" (dict "name" "envelope" "class" "")
+  "discord" (dict "name" "discord" "class" "")
+  "cfemail" (dict "name" "at" "class" "")
+  "twitter" (dict "name" "twitter-x" "class" "")
+  "github" (dict "name" "github" "class" "")
+  "telegram" (dict "name" "telegram" "class" "")
+  "bluesky" (dict "name" "bluesky" "class" "")
+  "rss" (dict "name" "rss" "class" "")
+  "gmail" (dict "name" "gmail" "class" "" "source" "icons8")
+}}
+
+{{ $socialLinks := site.Params.Authors.main.links }}
+
+{{ $commonClasses := "w-12 h-12 rounded-full bg-white dark:bg-black hover:bg-zinc-200 dark:hover:bg-zinc-700 flex items-center justify-center p-2" }}
+
+<ul class="flex items-center gap-x-4">
+  {{ range $k, $v := $socialLinks }}
+    {{/* Get the icon configuration for the current social link key */}}
+    {{- $iconConfig := index $socialIconsMap $k -}}
+
+    {{- /* Only render if an icon config exists for this link type */ -}}
+    {{- if $iconConfig -}}
+      <li>
+        {{- /* Determine the link attribute (href or data-cfemail) */ -}}
+        {{- $linkAttr := "href" -}}
+        {{- if eq "cfemail" $k -}}
+          {{- $linkAttr = "data-cfemail" -}}
+        {{- end -}}
+
+        <a class="{{ $commonClasses }}" rel="noopener noreferrer" {{ printf "%s=%q" $linkAttr $v | safeHTMLAttr }}>
+          {{- /* Pass the icon configuration to the icon partial */ -}}
+          {{ partial "icon.html" $iconConfig }}
+        </a>
+      </li>
+    {{- end -}}
+  {{- end -}}
+</ul>

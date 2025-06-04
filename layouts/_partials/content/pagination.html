@@ -1,0 +1,15 @@
+{{ $paginator := .Paginator }}
+
+{{ if $paginator }}
+  <div class="flex items-center mt-10">
+    {{- if $paginator.HasPrev -}}
+      <a class="border rounded-full px-6 py-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 mr-auto"
+         href="{{ $paginator.Prev.URL }}">← {{ i18n "prev-page" }}</a>
+    {{- end -}}
+
+    {{- if $paginator.HasNext -}}
+      <a class="border rounded-full px-6 py-2 hover:bg-zinc-200  dark:hover:bg-zinc-800"
+         href="{{ $paginator.Next.URL }}">{{ i18n "next-page" }} →</a>
+    {{- end -}}
+  </div>
+{{ end }}

@@ -1,0 +1,33 @@
+<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+  <div class="flex flex-wrap gap-y-6 mb-4">
+    <div class="w-full md:w-3/5 flex flex-col gap-y-4 md:pr-8 lg:pr-10">
+      <a class="flex items-center group"
+         href="{{ .Site.BaseURL }}">{{ partial "icon.html" (dict "name" "peace" "class" "w-7 h-7 mr-2 group-hover:animate-spin") }}
+        <span class="text-2xl font-semibold uppercase">{{ .Site.Title }}</span>
+      </a>
+      <p class="font-semibold">
+        {{ .Site.Params.description }}
+      </p>
+      <p class="license text-pretty md:text-balance">
+        {{ .Site.Params.license | markdownify }}
+      </p>
+    </div>
+    <div class="self-center flex flex-col w-full md:w-2/5">
+      {{ partial "footer/social-links.html" }}
+    </div>
+  </div>
+  <div class="my-8">
+    <ul class="flex items-center gap-x-4">
+      {{ range .Site.Menus.main }}
+        <li><a class="decoration-auto hover:underline font-semibold" href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+  <div class="border-t pt-4 flex flex-col gap-y-2">
+    <p class="text-sm">Copyright &copy;{{ now.Year }}. Some rights reserved.</p>
+    <p class="text-xs">
+      Theme based on <a href="https://github.com/fauzanmy/pehtheme-hugo" rel="noopener noreferrer" style="text-decoration: underline;">Pehtheme</a>.
+      Icons from <a href="https://icons.getbootstrap.com/" rel="noopener noreferrer" style="text-decoration: underline;">Bootstrap Icons</a>.
+    </p>
+  </div>
+</div>

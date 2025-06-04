@@ -1,0 +1,10 @@
+related-posts: Related Posts
+view-all: View All
+recent-posts: Recent Posts
+search: Search
+written-by: "Written By: "
+prev-page: Previous
+next-page: Next
+reading-time: "{{ .Count }} min read"
+taxonomy-tags: "Tags: "
+section-posts: Posts

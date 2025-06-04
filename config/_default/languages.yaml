@@ -1,0 +1,24 @@
+en:
+  contentDir: content/en
+  languageCode: en-US
+  languageName: English
+  timeZone: America/New_York
+  weight: 1
+  params:
+    reading_speed: 200
+zh:
+  contentDir: content/zh
+  languageCode: zh-CN
+  languageName: 中文
+  timeZone: Asia/Shanghai
+  weight: 2
+  params:
+    reading_speed: 300
+ja:
+  contentDir: content/ja
+  languageCode: ja-JP
+  languageName: 日本語
+  timeZone: Asia/Tokyo
+  weight: 3
+  params:
+    reading_speed: 300

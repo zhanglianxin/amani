@@ -1,0 +1,10 @@
+related-posts: 関連記事
+view-all: すべて表示
+recent-posts: 最近記事
+search: 検索
+written-by: "著者："
+prev-page: 前のページ
+next-page: 次のページ
+reading-time: "{{ .Count }} 分で読めます"
+taxonomy-tags: "タグ："
+section-posts: 記事

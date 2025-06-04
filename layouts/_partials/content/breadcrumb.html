@@ -1,0 +1,14 @@
+<div class="max-w-7xl mx-auto py-8">
+  <nav aria-label="breadcrumb" class="breadcrumb">
+    <ul class="flex gap-x-4 text-sm text-zinc-500 dark:text-gray-400">
+      {{ range .Ancestors.Reverse }}
+        <li class="after:content-['»'] after:ml-4 after:opacity-30 dark:after:opacity-80 last:after:content-none uppercase">
+          <a href="{{ .Permalink | relLangURL }}">{{ .LinkTitle }}</a>
+        </li>
+      {{ end }}
+      {{/*<li class="after:ml-4 after:opacity-30 dark:after:opacity-80 last:after:content-none uppercase active border-b">
+        <a aria-current="page" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      </li>*/}}
+    </ul>
+  </nav>
+</div>

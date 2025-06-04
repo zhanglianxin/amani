@@ -1,0 +1,53 @@
+<!-- featured posts -->
+<section class="flex flex-col md:flex-row gap-6 my-14">
+  {{ range first 1 . }}
+  <div class="md:w-1/2 bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-8 relative group hover:bg-blue-100 dark:hover:bg-blue-900">
+    {{ if .Params.Image }}
+    <figure class="w-full aspect-video overflow-hidden rounded-2xl border">
+        {{ if (strings.HasPrefix .Params.Image "http") }}
+          <img class="w-full h-full cursor-pointer object-cover group-hover:scale-105 transition duration-500"
+               src="{{ .Params.Image }}" alt="{{ .Params.Caption }}"/>
+        {{ else }}
+          {{ with $img := resources.Get .Params.Image }}
+            {{ $imgFeature := $img.Resize "720x Q85" -}}
+            <img class="w-full h-full cursor-pointer object-cover group-hover:scale-105 transition duration-500"
+                 src="{{ $imgFeature.Permalink }}" alt="{{ .Params.Caption }}">
+          {{ end }}
+        {{ end }}
+    </figure>
+    {{ end }}
+    <div class="self-center">
+      <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold my-4 line-clamp-5"><a href="{{ .Permalink }}" class="insert-link">{{ .LinkTitle }}</a></h3>
+      <time datetime="{{ .Date.Format "2006-01-02T15:04:05+00:00" | safeHTML }}">
+        <span class="font-medium">{{ .Date.Format "Jan 02, 2006" }}</span>
+      </time>
+    </div>
+  </div>
+  {{ end }}
+  <div class="md:w-1/2 flex flex-col gap-4">
+    {{ range after 1 . }}
+    <div class="bg-zinc-100 dark:bg-zinc-900 rounded-xl py-8 hover:bg-blue-100 dark:hover:bg-blue-900 relative group overflow-hidden">
+        {{ if .Params.Image }}
+      <figure class="w-32 h-full absolute left-0 top-0 overflow-hidden">
+          {{ if (strings.HasPrefix .Params.Image "http") }}
+            <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                 src="{{ .Params.Image }}" alt="{{ .Params.Caption }}" loading="lazy">
+          {{ else }}
+            {{ with $img := resources.Get .Params.Image }}
+              {{ $imgFeature := $img.Resize "200x Q85" -}}
+              <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                   src="{{ $imgFeature.Permalink }}" alt="{{ .Params.Caption }}" loading="lazy">
+            {{ end }}
+          {{ end }}
+      </figure>
+        {{ end }}
+      <div class=" {{ if .Params.Image }}pl-36 pr-4{{ else }}px-4{{ end }}">
+        <h3 class="text-xl font-bold mb-2 line-clamp-2"><a href="{{ .Permalink }}" class="insert-link">{{ .LinkTitle }}</a></h3>
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05+00:00" | safeHTML }}">
+          <span class="font-medium">{{ .Date.Format "Jan 02, 2006" }}</span>
+        </time>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>

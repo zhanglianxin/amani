@@ -1,0 +1,13 @@
+main:
+  - name: ホーム
+    pageRef: /
+    weight: 10
+  - name: 記事
+    pageRef: /posts
+    weight: 20
+  - name: カテゴリー
+    pageRef: /categories
+    weight: 25
+  - name: タグ
+    pageRef: /tags
+    weight: 30

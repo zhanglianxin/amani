@@ -1,0 +1,16 @@
+<div class="lg:sticky lg:top-8 flex flex-col gap-y-8 lg:mx-4">
+  {{ if .IsPage }}
+    <!-- TOC -->
+    <div class="hidden lg:block">
+      {{ .TableOfContents }}
+    </div>
+  {{ end }}
+  {{ partial "content/aside-banner.html" . }}
+
+  <div class="my-6 flex flex-col gap-y-4">
+    <h2 class="font-bold text-xl mb-4">{{ i18n "recent-posts" }}</h2>
+    {{ range where site.RegularPages "Type" "posts" | first 5 }}
+      {{- partial "content/list-post.html" . -}}
+    {{ end }}
+  </div>
+</div>

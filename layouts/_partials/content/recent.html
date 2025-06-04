@@ -1,0 +1,22 @@
+<section class="mb-16">
+  <div class="flex items-center mb-6">
+    <h2 class="text-3xl md:text-4xl font-bold mr-auto">{{ i18n "recent-posts"}}</h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
+    {{ $paginator := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) }}
+    {{ range $paginator.Pages }}
+      {{ partial "content/card.html" . }}
+    {{ end }}
+  </div>
+  <div class="flex items-center mt-10">
+    {{- if $paginator.HasPrev -}}
+      <a class="border rounded-full px-6 py-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 mr-auto"
+         href="{{ $paginator.Prev.URL }}">← {{ i18n "prev-page" }}</a>
+    {{- end -}}
+
+    {{- if $paginator.HasNext -}}
+      <a class="border rounded-full px-6 py-2 hover:bg-zinc-200  dark:hover:bg-zinc-800"
+         href="{{ $paginator.Next.URL }}">{{ i18n "next-page" }} →</a>
+    {{- end -}}
+  </div>
+</section>

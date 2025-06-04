@@ -1,0 +1,13 @@
+main:
+  - name: 主页
+    pageRef: /
+    weight: 10
+  - name: 文章
+    pageRef: /posts
+    weight: 20
+  - name: 类别
+    pageRef: /categories
+    weight: 25
+  - name: 标签
+    pageRef: /tags
+    weight: 30

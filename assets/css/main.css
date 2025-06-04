@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+@source "hugo_stats.json";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+  .insert-link {
+    @apply before:absolute before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:pointer-events-auto;
+  }
+
+  .border, hr {
+    @apply border-zinc-200 dark:border-zinc-700;
+  }
+
+  .border-b, [class*="border-b-"], .border-t, [class*="border-t-"] {
+    @apply border-zinc-200 dark:border-zinc-700;
+  }
+}
+
+@layer utilities {
+  .close {
+    display: none;
+  }
+
+  .open {
+    display: block;
+  }
+}
+
+@layer base {
+  body {
+    @apply text-black/90 bg-white/10 dark:text-white/90 dark:bg-black;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    /*transition-property: all;*/
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+  }
+
+  body > footer {
+    @apply bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100;
+  }
+
+  button, [type='button'], [type='submit'] {
+    cursor: pointer;
+  }
+
+  --image-filter: grayscale(50%);
+
+  .dark img:not([src*='.svg']) {
+    filter: var(--image-filter);
+  }
+
+  .license {
+    @apply text-sm;
+  }
+
+  .license a {
+    @apply underline decoration-blue-500 text-blue-500;
+  }
+
+  /*remove pseudo-elements content from @tailwindcss/typography*/
+  .prose {
+    & blockquote {
+      & > p:first-of-type::before, & > p:last-of-type::after {
+        content: none !important;
+      }
+    }
+
+    & code::before, & code::after {
+      content: none !important;
+    }
+  }
+
+  pre.mermaid[data-processed="true"] {
+    --tw-prose-pre-bg: var(--color-zinc-100);
+
+    .dark & {
+      --tw-prose-pre-bg: var(--color-zinc-800);
+    }
+  }
+
+  .alert-heading {
+    @apply flex items-center;
+
+    & > svg {
+      fill: currentColor;
+    }
+  }
+
+  /* GitHub alerts style from GitHub*/
+  .alert {
+    --accent-emphasis: #0969da;
+    --success-emphasis: #1a7f37;
+    --done-emphasis: #8250df;
+    --attention-emphasis: #9a6700;
+    --danger-emphasis: #cf222e;
+  }
+
+
+  .dark:root {
+    --accent-emphasis: #1f6feb;
+    --success-emphasis: #238636;
+    --done-emphasis: #8957e5;
+    --attention-emphasis: #9e6a03;
+    --danger-emphasis: #da3633;
+  }
+
+  .alert-note {
+    --tw-prose-quote-borders: var(--accent-emphasis);
+
+    .alert-heading {
+      color: var(--accent-emphasis);
+    }
+  }
+
+  .alert-tip {
+    --tw-prose-quote-borders: var(--success-emphasis);
+
+    .alert-heading {
+      color: var(--success-emphasis);
+    }
+  }
+
+  .alert-important {
+    --tw-prose-quote-borders: var(--done-emphasis);
+
+    .alert-heading {
+      color: var(--done-emphasis);
+    }
+  }
+
+  .alert-warning {
+    --tw-prose-quote-borders: var(--attention-emphasis);
+
+    .alert-heading {
+      color: var(--attention-emphasis);
+    }
+  }
+
+  .alert-caution {
+    --tw-prose-quote-borders: var(--danger-emphasis);
+
+    .alert-heading {
+      color: var(--danger-emphasis);
+    }
+  }
+
+  .footnotes {
+    @apply text-xs max-w-full wrap-break-word my-6;
+  }
+
+  nav#TableOfContents {
+    @apply text-zinc-500 dark:text-zinc-400;
+    & ul ul {
+      @apply  pl-4;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+description: |
+  Pehtheme Hugo Lite：一个极简主义的 Hugo 主题，使用 TailwindCSS 构建，具有高效的性能和极简主义。
+license: |
+  如未另行说明，那么本页面中的内容已根据[知识共享署名 4.0 许可](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)获得了许可，并且代码示例已根据 [MIT 许可](https://raw.githubusercontent.com/zhanglianxin/blog/refs/heads/master/LICENSE-CODE)获得了许可。
+mainSection: 技术
+defaultAuthor: main
+authors:
+  main:
+    name: Coolman
+    avatar: https://avatars.githubusercontent.com/u/9329713?v=4
+    bio: |
+      Debitis assumenda esse dignissimos aperiam delectus maxime tenetur repudiandae dolore
+    links:
+      github: https://github.com/zhanglianxin
+      cfemail: 7c111d15100813461f131310111d123c1f131310111d12520f150819
+      bluesky: https://bluesky.social

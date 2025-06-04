@@ -1,0 +1,49 @@
+{{- $source := .source | default "bootstrap" -}}
+{{- $name := .name -}}
+{{- $class := .class | default "w-5 h-5" -}}
+
+{{/*{{- $sourceMap := dict
+  "hero" "hero-icons"
+  "bootstrap" "bootstrap-icons"
+  "feather" "feather-icons"
+  "custom" "custom-icons"
+  "icons8" "icons8-icons"
+  "github" "github-icons"
+-}}*/}}
+
+{{ $sourceMap := dict }}
+{{ range readDir "data" }}
+  {{ $k := strings.TrimRight "-icons.yaml" .Name }}
+  {{ $v := strings.TrimRight ".yaml" .Name }}
+  {{ $sourceMap = merge $sourceMap (dict $k $v) }}
+{{ end }}
+
+{{- $dataKey := index $sourceMap $source -}}
+{{- if not $dataKey -}}
+  {{- errorf "Unknown icon source: %q" $source -}}
+{{- end -}}
+
+{{- $iconSet := index site.Data $dataKey -}}
+
+{{- with index $iconSet $name -}}
+  {{/*method 1. override old class*/}}
+  {{/*{{- replace . "<svg" (printf `<svg class="%s"` $class) | safeHTML -}}*/}}
+
+  {{/*method 2. preserve old class*/}}
+  {{ $matches := findRESubmatch `<svg[^>]*\sclass="([^"]*)"[^>]*>` . 1 }}
+  {{ if $matches }}
+    {{- $appendAttrs := dict "class" $class }}
+    {{- $dict := partial "_funcs/merge-element-attrs.html" (dict "dicts" (slice $appendAttrs)) }}
+    {{- $className := index (index $matches 0) 1 }}
+    {{- replace . $className (printf "%s %s" $className $dict.class) 1 | safeHTML }}
+  {{ else }}
+    {{/*no class attr decorated, give new*/}}
+    {{- replace . "<svg" (printf `<svg class="%s"` $class) 1 | safeHTML }}
+  {{ end }}
+{{- else -}}
+  {{- $availableIcons := slice -}}
+  {{- range $key, $_ := $iconSet -}}
+    {{- $availableIcons = $availableIcons | append $key -}}
+  {{- end -}}
+  {{- errorf "Icon %q not found in %q icon set. Available icons: %v" $name $source $availableIcons -}}
+{{- end -}}

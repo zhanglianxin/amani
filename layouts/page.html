@@ -1,0 +1,64 @@
+{{ define "main" }}
+  {{ partial "content/breadcrumb.html" . }}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+    <!-- article -->
+    <article class="md:col-span-2 prose dark:prose-invert max-w-none">
+      <!-- article header -->
+      <header class="not-prose">
+        <h1 class="text-4xl font-bold leading-normal">{{ .Title }}</h1>
+        {{ if .Params.description }}
+          <div class="my-6">
+            <p class="font-bold">{{ .Params.description }}</p>
+          </div>
+        {{ end }}
+        {{ partial "content/writer.html" . }}
+      </header>
+      <!-- article figure -->
+      {{ if .Params.image }}
+        <figure class="rounded-xl aspect-video flex flex-col justify-center items-center">
+          {{ if strings.HasPrefix .Params.image "http" }}
+            <img class="rounded-lg object-container max-w-full max-h-full object-contain" src="{{ .Params.image }}" alt="{{ .Params.title }}">
+          {{ else }}
+            {{ with $img := resources.Get .Params.image }}
+              {{ $imgFeature := $img.Resize "720x Q85" -}}
+              <img class="rounded-lg object-container max-w-full max-h-full object-contain" src="{{ $imgFeature.Permalink }}"
+                   alt="{{ .Params.title }}"
+                   width="{{ $imgFeature.Width }}"
+                   height="{{ $imgFeature.Height }}">
+            {{ end }}
+          {{ end }}
+          {{ if isset .Params "caption" }}
+            <figcaption class="text-center italic text-xs">{{ .Params.caption }}</figcaption>
+          {{ end }}
+        </figure>
+      {{ end }}
+      <!-- article content -->
+      <div class="mb-14">
+        {{ .Content }}
+        {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+      </div>
+      <!-- article footer -->
+      <footer class="not-prose">
+        <!-- author-box -->
+        {{ partial "content/author-box.html" . }}
+        <!-- related recommend -->
+        <div class="flex flex-col items-start justify-center">
+          {{ $related := .Site.RegularPages.Related . | first 2 }}
+          {{ with $related }}
+            <h2 class="text-xl md:text-2xl font-bold mb-6 md:mb-8">{{ i18n "related-posts" }}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {{ range . }}
+                {{ partial "content/card.html" . }}
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+        <!-- comment -->
+      </footer>
+    </article>
+
+    <aside class="md:col-span-1">
+      {{ partial "content/aside.html" . }}
+    </aside>
+  </div>
+{{ end }}

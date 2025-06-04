@@ -1,0 +1,30 @@
+{{- /*
+Merge element attributes.
+
+@context {dicts} slice of (attribute)s' dict
+
+@example:
+    {{ $attrs := dict "class" "text-white" }}
+    {{ $appendAttrs := dict "class" "bg-black" }}
+    {{ partial "_funcs/merge-element-attrs.html" (dict "dicts" (slice $attrs $appendAttrs)) }}
+*/}}
+
+{{- $result := dict -}}
+{{- range $dict := .dicts -}}
+  {{- range $key, $value := $dict -}}
+    {{- if isset $result $key -}}
+      {{- if eq $key "class" -}}
+        {{- $existingClasses := split (index $result $key) " " -}}
+        {{- $newClasses := split $value " " -}}
+        {{- $allClasses := union $existingClasses $newClasses -}}
+        {{- $combinedClass := delimit $allClasses " " -}}
+        {{- $result = merge $result (dict $key $combinedClass) -}}
+      {{- else -}}
+        {{- $result = merge $result (dict $key $value) -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $result = merge $result (dict $key $value) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $result -}}

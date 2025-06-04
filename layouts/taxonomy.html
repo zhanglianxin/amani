@@ -1,0 +1,18 @@
+{{ define "main" }}
+  {{ partial "content/breadcrumb.html" . }}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
+    <section class="col-span-2">
+      <h2 class="text-3xl font-bold mb-10">{{ .Title | humanize }}</h2>
+      <ul class="flex flex-wrap gap-4 text-xl">
+        {{ range .Pages }}
+          <li class="relative hover:bg-zinc-200 dark:hover:bg-zinc-800 border py-6 px-8 rounded-2xl group">
+            <a class="insert-link flex items-center gap-x-4" href="{{ .RelPermalink }}">
+              <span>{{ .LinkTitle | humanize }}</span>
+              <span class="inline-flex items-center rounded-md bg-blue-50 dark:bg-blue-800/85 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-200 ring-1 ring-blue-700/10 dark:ring-blue-700/80 ring-inset">{{ len .Pages }}</span>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </section>
+  </div>
+{{ end }}

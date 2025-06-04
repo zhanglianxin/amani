@@ -1,0 +1,14 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<!-- TODO: SEO metas -->
+<!-- TODO: og metas -->
+<!-- TODO: AMP support -->
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  document.documentElement.classList.toggle("dark", () => {
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  });
+</script>
+{{ partialCached "head/css.html" . }}

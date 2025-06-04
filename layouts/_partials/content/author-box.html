@@ -1,0 +1,55 @@
+{{ $authorId := .Params.author | default .Site.Params.defaultAuthor }}
+{{ with $author := index .Site.Params.Authors $authorId }}
+  {{ $socialIconsMap := dict
+    "email" (dict "name" "envelope" "class" "")
+    "discord" (dict "name" "discord" "class" "")
+    "cfemail" (dict "name" "at" "class" "")
+    "twitter" (dict "name" "twitter-x" "class" "")
+    "github" (dict "name" "github" "class" "")
+    "telegram" (dict "name" "telegram" "class" "")
+    "bluesky" (dict "name" "bluesky" "class" "")
+    "rss" (dict "name" "rss" "class" "")
+    "gmail" (dict "name" "gmail" "class" "" "source" "icons8")
+  }}
+
+  <div id="author-box" class="my-6 md:my-8 border p-6 bg-zinc-100 dark:bg-zinc-900 rounded-2xl">
+    <div class="flex flex-row gap-x-8 items-center mb-4">
+      <img class="w-20 h-20 rounded-full" src="{{ $author.Avatar }}" alt="{{ $author.Name }}">
+      <div class="flex flex-col gap-y-1">
+        <div class="text-xl font-bold">{{ i18n "written-by" }}</div>
+        <p class="line-clamp-3">{{ $author.Bio }}</p>
+      </div>
+    </div>
+
+    {{ with $socialLinks := (index site.Params.Authors $authorId).links }}
+      {{ $commonClasses := "flex items-center decoration-auto hover:underline" }}
+      <ul class="flex flex-wrap gap-x-4">
+        {{ range $k, $v := $socialLinks }}
+          {{/* Get the icon configuration for the current social link key */}}
+          {{- $iconConfig := index $socialIconsMap $k -}}
+
+          {{- /* Only render if an icon config exists for this link type */ -}}
+          {{- if $iconConfig -}}
+            <li>
+              {{- /* Determine the link attribute (href or data-cfemail) */ -}}
+              {{- $linkAttr := "href" -}}
+              {{- if eq "cfemail" $k -}}
+                {{- $linkAttr = "data-cfemail" -}}
+              {{- end -}}
+
+              <a class="{{ $commonClasses }}" rel="noopener noreferrer" {{ printf "%s=%q" $linkAttr $v | safeHTMLAttr }}
+                 target="_blank">
+                {{- /* Pass the icon configuration to the icon partial */ -}}
+                {{ partial "icon.html" $iconConfig }}
+                {{- if eq "cfemail" $k -}}
+                  {{- $k = "email" -}}
+                {{- end -}}
+                <span class="ml-1">{{ $k | humanize }}</span>
+              </a>
+            </li>
+          {{- end -}}
+        {{ end }}
+      </ul>
+    {{ end }}
+  </div>
+{{ end }}

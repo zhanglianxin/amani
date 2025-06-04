@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{/*{{ .Content }}*/}}
+  {{ $featured := where site.RegularPages "Params.categories" "intersect" (slice "featured") }}
+  {{ with first 5 $featured }}
+    {{ partial "content/featured.html" . }}
+  {{ end }}
+  <!-- TODO: show the category list -->
+  {{ partial "content/categorized.html" (dict "category" .Site.Params.mainSection) }}
+  <hr class="my-8">
+  {{ partial "content/recent.html" . }}
+{{ end }}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}" class="scheme-light dark:scheme-dark">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+<header class="py-6 border-b">
+  {{ partial "header.html" . }}
+</header>
+<main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+  {{ block "main" . }}{{ end }}
+</main>
+<footer class="py-8 md:py-10">
+  {{ partial "footer.html" . }}
+</footer>
+{{ partialCached "head/js.html" . }}
+{{ if .Store.Get "hasMermaid" }}
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.esm.min.mjs';
+    // import mermaid from 'https://unpkg.com/mermaid@11.6.0/dist/mermaid.esm.min.mjs';
+
+    const isDark = localStorage.theme === "dark" ||
+      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    mermaid.initialize({
+      startOnLoad: true,
+      // default, neutral, dark, forest, base https://mermaid.js.org/config/theming.html#available-themes
+      theme: !isDark? 'default': 'dark',
+    })
+  </script>
+{{ end }}
+</body>
+</html>

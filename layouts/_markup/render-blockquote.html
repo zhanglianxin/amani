@@ -1,0 +1,25 @@
+{{ $icons := dict
+  "caution" (dict "source" "github" "name" "caution")
+  "important" (dict "source" "github" "name" "important")
+  "note" (dict "source" "github" "name" "note")
+  "tip" (dict "source" "github" "name" "tip")
+  "warning" (dict "source" "github" "name" "warning")
+}}
+
+{{ if eq .Type "alert" }}
+  <blockquote class="alert alert-{{ .AlertType }}">
+    <p class="alert-heading">
+      {{ partial "icon.html" (index $icons .AlertType) }}
+      {{ with .AlertTitle }}
+        {{ . }}
+      {{ else }}
+        {{ or (i18n .AlertType) (title .AlertType) }}
+      {{ end }}
+    </p>
+    {{ .Text }}
+  </blockquote>
+{{ else }}
+  <blockquote>
+    {{ .Text }}
+  </blockquote>
+{{ end }}

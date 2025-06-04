@@ -1,0 +1,18 @@
+{{ define "main" }}
+  {{ partial "content/breadcrumb.html" . }}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
+    <section class="md:col-span-2">
+      <h2 class="text-3xl font-bold mb-10">{{ i18n (printf "section-%s" (lower .Title)) }}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-4">
+        {{ $paginator := .Paginate .Pages }}
+        {{ range $paginator.Pages }}
+          {{ partial "content/card.html" . }}
+        {{ end }}
+      </div>
+      {{ partial "content/pagination.html" . }}
+    </section>
+    <aside class="md:col-span-1">
+      {{ partial "content/aside.html" . }}
+    </aside>
+  </div>
+{{ end }}

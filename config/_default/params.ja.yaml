@@ -1,0 +1,16 @@
+description: |
+  Pehtheme Hugo Lite: 効率的なパフォーマンスとミニマリズムを実現するために TailwindCSS で構築されたミニマリスト Hugo テーマ。
+license: |
+  特に記載のない限り、このページのコンテンツは[クリエイティブ・コモンズの表示 4.0 ライセンス](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja)により使用許諾されます。コードサンプルは [MIT ライセンス](https://raw.githubusercontent.com/zhanglianxin/blog/refs/heads/master/LICENSE-CODE)により使用許諾されます。
+mainSection: 技術
+defaultAuthor: main
+authors:
+  main:
+    name: Coolman
+    avatar: https://avatars.githubusercontent.com/u/9329713?v=4
+    bio: |
+      Debitis assumenda esse dignissimos aperiam delectus maxime tenetur repudiandae dolore
+    links:
+      github: https://github.com/zhanglianxin
+      cfemail: 7c111d15100813461f131310111d123c1f131310111d12520f150819
+      bluesky: https://bluesky.social

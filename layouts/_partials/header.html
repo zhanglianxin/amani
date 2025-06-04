@@ -1,0 +1,48 @@
+<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+  <div class="flex items-center">
+    <div class="flex items-center">
+      {{/*menu indicator*/}}
+      <button
+        class="flex items-center gap-x-2 rounded-full border py-1 pr-[5px] pl-3 group bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 toggle-button"
+        data-target="menu-bar">
+        {{/*menu*/}}
+        {{ partial "icon.html" (dict "name" "list") }}
+        {{/*logo*/}}
+        <span
+          class="bg-blue-500 fill-white rounded-full p-1.5">{{ partial "icon.html" (dict "name" "peace" "class" "group-hover:animate-spin fill-white") }}</span>
+      </button>
+
+      {{/*site title*/}}
+      <div
+        class="relative rounded-full py-1.5 px-5 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-xl font-bold uppercase mx-2">
+        {{ $link := printf
+          `<a class="before:absolute before:inset-0 before:z-10 before:content-[''] before:pointer-events-auto" href="%s">%s</a>`
+          site.BaseURL site.Title }}
+        {{ if .IsHome }}
+          <h1>{{ $link | safeHTML }}</h1>
+        {{ else }}
+          <h2>{{ $link | safeHTML }}</h2>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="flex items-center ml-auto gap-3" style="">
+      {{/*search bar*/}}
+      <button
+        class="flex items-center rounded-full p-3 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 toggle-button"
+        data-target="search-container">
+        {{ partial "icon.html" (dict "name" "search" "class" "transition-opacity ease-linear") }}
+        {{ partial "icon.html" (dict "name" "x-lg" "class" "transition-opacity ease-linear close") }}
+      </button>
+      {{/*theme toggle*/}}
+      <button
+        class="flex items-center gap-3 border rounded-full p-3 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 toggle-theme">
+        {{ partial "icon.html" (dict "name" "sun" "class" "sun-icon") }}
+        {{ partial "icon.html" (dict "name" "moon" "class" "moon-icon hidden" "style" "color: black") }}
+      </button>
+      {{ partial "all-languages.html" . }}
+    </div>
+  </div>
+  {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+  {{ partial "search.html" }}
+</div>

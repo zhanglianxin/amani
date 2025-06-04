@@ -1,0 +1,21 @@
+<div id="search-container" class="relative mt-3 close">
+  <form id="search-form" class="flex items-stretch" role="search">
+    <label class="sr-only" for="search-input" id="search-input-label">Search</label>
+    <input
+      class="w-full block px-6 py-2 rounded-l-full focus:outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+      aria-labelledby="top-nav-search-label" autocomplete="off" id="search-input" role="combobox"
+      type="search" placeholder="{{ i18n "search" }}..." required>
+    <button type="submit" class="flex items-center px-7 py-2.5 rounded-r-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-300">
+      {{ partial "icon.html" (dict "name" "search" "class" "w-5 h-5") }}
+    </button>
+  </form>
+
+  <div id="search-results-container" class="absolute z-20 mt-2 w-full hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-h-96 overflow-y-auto">
+    <ul id="search-results-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+    </ul>
+    <div id="search-status-message" class="p-4 text-center text-gray-500 dark:text-gray-400 hidden">
+    </div>
+  </div>
+</div>
+
+{{/*<script src="/js/pagefind-search.js" defer></script>*/}}

@@ -1,0 +1,37 @@
+{{/*{{ with resources.Get "js/main.js" }}
+    {{$opts := dict
+    "minify" (not hugo.IsDevelopment)
+    "sourceMap" (cond hugo.IsDevelopment "external" "")
+    "targetPath" "js/main.js"
+    }}
+    {{ with . | js.Build $opts }}
+        {{ if hugo.IsDevelopment }}
+          <script src="{{ .RelPermalink }}"></script>
+        {{ else }}
+            {{ with . | fingerprint }}
+              <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}*/}}
+
+{{ $jsFiles := slice }}
+{{ range resources.Match "js/*.js" }}
+  {{ $jsFiles = $jsFiles | append . }}
+{{ end }}
+
+{{ if $jsFiles }}
+  {{ $js := $jsFiles | resources.Concat "js/bundle.js" }}
+  {{ $opts := dict
+    "minify" (not hugo.IsDevelopment)
+    "sourceMap" (cond hugo.IsDevelopment "external" "")
+    "targetPath" "js/main.js"
+  }}
+  {{ if hugo.IsDevelopment }}
+    <script src="{{ $js.RelPermalink }}"></script>
+  {{ else }}
+    {{ with $js | fingerprint }}
+      <script src="{{ $js.RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+    {{ end }}
+  {{ end }}
+{{ end }}
