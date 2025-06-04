@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-Amani 是一个清新、现代和简约的 Hugo 主题，专为个人博客和作品集设计。它注重内容的可读性，同时提供美观且响应式的设计。\
+Amani 是一个清新、现代和简约的 Hugo 主题，专为个人博客和作品集设计。它注重内容的可读性，同时提供美观且响应式的设计。
 
 本主题基于 [Pehtheme](https://github.com/fauzanmy/pehtheme-hugo) 开发，加入了多项增强和定制功能。
 

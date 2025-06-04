@@ -1,6 +1,6 @@
 # Amani
 
-English] | [简体中文](README.zh-CN.md)
+English | [简体中文](README.zh-CN.md)
 
 Amani is a clean, modern, and minimalist Hugo theme designed for personal blogs and portfolios. \
 It focuses on content readability while providing a beautiful and responsive design.
