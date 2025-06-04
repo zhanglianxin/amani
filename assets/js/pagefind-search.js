@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Using /posts/ to match directory structure
                     const uriIncludesPosts = resultData.url?.toLowerCase().includes('/posts/')
-                    && !(resultData.url?.toLowerCase().endsWith('/posts/'));
+                        && !(resultData.url?.toLowerCase().includes('/posts/page/'))
+                        && !(resultData.url?.toLowerCase().endsWith('/posts/'));
 
                     if ((titleMatch || excerptMatch) && uriIncludesPosts) {
                         tempFilteredResults.push(result);
