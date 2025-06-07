@@ -1,0 +1,12 @@
+{{ if .Site.Taxonomies.categories }}
+  {{ $classes := "px-4 py-2 font-semibold text-lg text-blue-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl" }}
+  <div class="categories-list">
+    <ul class="flex items-center gap-3 flex-wrap">
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        <li class="{{ $classes }}">
+          <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">{{ $name }}<!-- ({{ $taxonomy.Count }}) --></a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}
