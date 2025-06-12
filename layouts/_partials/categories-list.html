@@ -3,8 +3,8 @@
   <div class="categories-list">
     <ul class="flex items-center gap-3 flex-wrap">
       {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
-        <li class="{{ $classes }}">
-          <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">{{ $name }}<!-- ({{ $taxonomy.Count }}) --></a>
+        <li class="relative {{ $classes }}">
+          <a class="insert-link" href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">{{ $name }}<!-- ({{ $taxonomy.Count }}) --></a>
         </li>
       {{ end }}
     </ul>

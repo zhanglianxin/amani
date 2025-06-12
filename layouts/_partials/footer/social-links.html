@@ -28,7 +28,7 @@
           {{- $linkAttr = "data-cfemail" -}}
         {{- end -}}
 
-        <a class="{{ $commonClasses }}" rel="noopener noreferrer" {{ printf "%s=%q" $linkAttr $v | safeHTMLAttr }}>
+        <a aria-label="{{ $k }} link" class="{{ $commonClasses }}" rel="noopener noreferrer" {{ printf "%s=%q" $linkAttr $v | safeHTMLAttr }}>
           {{- /* Pass the icon configuration to the icon partial */ -}}
           {{ partial "icon.html" $iconConfig }}
         </a>

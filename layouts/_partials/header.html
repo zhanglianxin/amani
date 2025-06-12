@@ -3,6 +3,7 @@
     <div class="flex items-center">
       {{/*menu indicator*/}}
       <button
+        aria-label="menu"
         class="flex items-center gap-x-2 rounded-full border py-1 pr-[5px] pl-3 group bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 toggle-button"
         data-target="menu-bar">
         {{/*menu*/}}
@@ -29,6 +30,7 @@
     <div class="flex items-center ml-auto gap-3" style="">
       {{/*search bar*/}}
       <button
+        aria-label="search"
         class="flex items-center rounded-full p-3 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 toggle-button"
         data-target="search-container">
         {{ partial "icon.html" (dict "name" "search" "class" "transition-opacity ease-linear") }}
@@ -36,6 +38,7 @@
       </button>
       {{/*theme toggle*/}}
       <button
+        aria-label="theme toggle"
         class="flex items-center gap-3 border rounded-full p-3 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 toggle-theme">
         {{ partial "icon.html" (dict "name" "sun" "class" "sun-icon") }}
         {{ partial "icon.html" (dict "name" "moon" "class" "moon-icon hidden" "style" "color: black") }}

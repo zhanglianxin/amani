@@ -1,16 +1,16 @@
 <article class="relative group bg-zinc-100 dark:bg-zinc-900 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-3xl">
-  <a class="insert-link" href="{{ .Permalink }}"></a>
+  <a class="insert-link" href="{{ .Permalink }}" aria-label="Read more about {{ .LinkTitle }}"></a>
   {{ if .Params.Image }}
     <figure class="w-full aspect-video overflow-hidden rounded-3xl">
       {{ if (strings.HasPrefix .Params.Image "http") }}
         <img class="object-cover group-hover:scale-105 transition duration-500 cursor-pointer w-full h-half"
-             src="{{ .Params.Image }}" alt="{{ .Params.Caption }}" loading="lazy">
+             src="{{ .Params.Image }}" alt="{{ .Params.Caption }}">
       {{ else }}
         {{ with $img := resources.Get .Params.Image }}
           {{ $imgFeature := $img.Resize "720x Q85" -}}
           <img class="object-cover group-hover:scale-105 transition duration-500 cursor-pointer"
                src="{{ $imgFeature.Permalink }}" alt="{{ .Params.Caption }}" width="{{ $imgFeature.Width }}"
-               height="{{ $imgFeature.Height }}" loading="lazy">
+               height="{{ $imgFeature.Height }}">
         {{ end }}
       {{ end }}
     </figure>

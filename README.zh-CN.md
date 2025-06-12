@@ -29,10 +29,6 @@ Amani 是一个清新、现代和简约的 Hugo 主题，专为个人博客和�
 
 ## 待实现
 
-- [ ] SEO
-- [ ] OG metadata
-- [ ] AMP support
-
 ## 系统要求
 
 - Hugo v0.146.0 或更高版本

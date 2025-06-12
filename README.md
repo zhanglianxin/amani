@@ -30,10 +30,6 @@ Based on [Pehtheme](https://github.com/fauzanmy/pehtheme-hugo) with enhancements
 
 ## TODO
 
-- [ ] SEO
-- [ ] OG metadata
-- [ ] AMP support
-
 ## Requirements
 
 - Hugo v0.146.0 or higher

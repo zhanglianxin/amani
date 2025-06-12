@@ -31,12 +31,12 @@
       <figure class="w-32 h-full absolute left-0 top-0 overflow-hidden">
           {{ if (strings.HasPrefix .Params.Image "http") }}
             <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                 src="{{ .Params.Image }}" alt="{{ .Params.Caption }}" loading="lazy">
+                 src="{{ .Params.Image }}" alt="{{ .Params.Caption }}">
           {{ else }}
             {{ with $img := resources.Get .Params.Image }}
               {{ $imgFeature := $img.Resize "200x Q85" -}}
               <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                   src="{{ $imgFeature.Permalink }}" alt="{{ .Params.Caption }}" loading="lazy">
+                   src="{{ $imgFeature.Permalink }}" alt="{{ .Params.Caption }}">
             {{ end }}
           {{ end }}
       </figure>

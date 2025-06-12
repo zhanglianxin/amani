@@ -1,0 +1,11 @@
+<link rel="icon" type="" href="/peace.svg" />
+{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape }}
+  <meta name="description" content="{{ trim . "\n\r\t " }}">
+{{- end }}
+{{ template "_internal/schema.html" . }}
+{{ template "_internal/opengraph.html" . }}
+{{ template "_internal/google_analytics.html" . }}
+
+{{ with .OutputFormats.Get "rss" }}
+  {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+{{ end }}
