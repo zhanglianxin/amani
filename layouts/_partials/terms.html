@@ -12,8 +12,8 @@ For a given taxonomy, renders a list of terms assigned to the page.
 
 {{- with $page.GetTerms $taxonomy }}
   {{- $label := (index . 0).Parent.LinkTitle }}
-  <div class="flex not-prose gap-x-4">
-    <div class="font-semibold my-2">{{ i18n (printf "taxonomy-%s" $taxonomy ) }}</div>
+  <div class="flex not-prose gap-x-2">
+    <div class="font-semibold my-2 text-nowrap">{{ i18n (printf "taxonomy-%s" $taxonomy ) }}</div>
     <ul class="flex items-center gap-x-2 flex-nowrap whitespace-nowrap overflow-x-auto">
       {{- range . }}
         <li class=""><a

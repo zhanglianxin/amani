@@ -9,14 +9,6 @@
   .insert-link {
     @apply before:absolute before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:pointer-events-auto;
   }
-
-  .border, hr {
-    @apply border-zinc-200 dark:border-zinc-700;
-  }
-
-  .border-b, [class*="border-b-"], .border-t, [class*="border-t-"] {
-    @apply border-zinc-200 dark:border-zinc-700;
-  }
 }
 
 @layer utilities {
@@ -30,6 +22,15 @@
 }
 
 @layer base {
+  /*preserve the tailwindcss v3 default border color*/
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--color-zinc-200, currentColor);
+
+    .dark & {
+      border-color: var(--color-zinc-700, currentColor);
+    }
+  }
+
   body {
     @apply text-black/90 bg-white/10 dark:text-white/90 dark:bg-black;
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
