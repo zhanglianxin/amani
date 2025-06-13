@@ -18,6 +18,8 @@ module:
   mounts:
     - source: assets
       target: static
+    - source: static
+      target: static
 
 build:
   buildStats:
